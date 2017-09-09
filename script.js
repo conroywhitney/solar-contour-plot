@@ -3,9 +3,10 @@ var solarContour = new Vue({
   data: {
     baseURL: "http://localhost:4567",
     error: false,
+    fileId: null,
     loading: false,
-    pointsLoaded: false,
-    selectedSite: null,
+    site: null,
+    siteLoaded: false,
     sites: [],
     sitesLoaded: false
   },
@@ -21,8 +22,9 @@ var solarContour = new Vue({
       var $this = this;
       var url = this.baseURL + "/dev/sites/?short=T";
 
-      $this.$set($this, "error", false);
-      $this.$set($this, "loading", true);
+      this.$set(this, "error", false);
+      this.$set(this, "loading", true);
+      this.$set(this, "site", null);
 
       console.log("fetchSites", "url", url);
 
@@ -43,9 +45,41 @@ var solarContour = new Vue({
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
         });
+    },
+    fetchSite: function(file_id) {
+      var $this = this;
+      var url = this.baseURL + "/dev/sites/" + file_id + "/";
+
+      this.$set(this, "error", false);
+      this.$set(this, "loading", true);
+      this.$set(this, "site", null);
+
+      console.log("fetchSite", "url", url);
+
+      axios
+        .get(url)
+        .then(function(response) {
+          var site = response.data.data.site;
+
+          console.log("fetchSite", "success", response, "site", site);
+
+          $this.$set($this, "site", site);
+          $this.$set($this, "loading", false);
+          $this.$set($this, "siteLoaded", true);
+        })
+        .catch(function(error) {
+          console.log("fetchSite", "error", error);
+
+          $this.$set($this, "loading", false);
+          $this.$set($this, "error", true);
+        });
     }
   },
-  watch: {},
+  watch: {
+    fileId: function(file_id) {
+      this.fetchSite(file_id);
+    }
+  },
   mounted: function() {
     this.fetchSites();
   }

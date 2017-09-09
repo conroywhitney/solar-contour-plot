@@ -42,7 +42,7 @@
               <h2 class="lead">Choose your location to see solar panel wattage outputs at various tilts &amp; azimuths.</h2>
             </div>
             <div class="center-block col-lg-4 col-md-6 col-sm-8" style="float: none;">
-              <select class="form-control" id="select" v-model="selectedSite">
+              <select class="form-control" id="select" v-model="fileId">
                 <option value="">Select location...</option>
                 <option v-for="site in alphabeticalSites" :value="site.file_id">{{ site.city }}</option>
               </select>
@@ -66,7 +66,8 @@
         </div>
       </div>
 
-      <div v-if="pointsLoaded" class="content">
+      <div v-if="siteLoaded" class="content">
+        {{ site.city }}
       </div>
 
       <footer class="footer navbar-fixed-bottom">
