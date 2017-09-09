@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-gv0oNvwnqzF6ULI9TVsSmnULNb3zasNysvWwfT/s4l8k5I+g6oFz9dye0wg3rQ2Q" crossorigin="anonymous">
-    <link href="../css/bootstrap-override.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -32,23 +31,19 @@
       </div>
     </div>
 
-    <div class="content container">
+    <div class="content container" id="solar-contour">
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
             <h2 class="lead">Choose your location to see solar panel wattage outputs at various tilts &amp; azimuths.</h2>
 
-            <select class="form-control" id="select">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select class="form-control" id="select" v-model="selectedSite">
+              <option v-for="site in alphabeticalSites" :value="site.file_id">{{ site.city }}</option>
             </select>
+
+            Selected: {{ selectedSite }}
           </div>
         </div>
-
-
       </div>
 
       <footer class="footer navbar-fixed-bottom">
@@ -80,5 +75,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
