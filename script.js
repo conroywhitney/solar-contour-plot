@@ -20,6 +20,8 @@ var solarContour = new Vue({
     fetchSites: function() {
       var $this = this;
       var url = this.baseURL + "/dev/sites/?short=T";
+
+      $this.$set($this, "error", false);
       $this.$set($this, "loading", true);
 
       console.log("fetchSites", "url", url);
@@ -37,6 +39,7 @@ var solarContour = new Vue({
         })
         .catch(function(error) {
           console.log("fetchSites", "error", error);
+
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
         });
