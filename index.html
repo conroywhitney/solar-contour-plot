@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-gv0oNvwnqzF6ULI9TVsSmnULNb3zasNysvWwfT/s4l8k5I+g6oFz9dye0wg3rQ2Q" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
   </head>
   <body>
@@ -31,7 +32,7 @@
       </div>
     </div>
 
-    <div class="content container" id="solar-contour">
+    <div class="container" id="solar-contour">
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
@@ -40,9 +41,19 @@
             <select class="form-control" id="select" v-model="selectedSite">
               <option v-for="site in alphabeticalSites" :value="site.file_id">{{ site.city }}</option>
             </select>
-
-            Selected: {{ selectedSite }}
           </div>
+        </div>
+      </div>
+
+      <div v-if="loading" class="loading">
+        <div>
+          <span class="glyphicon glyphicon-refresh spinning" />
+        </div>
+        <div>Loading...</div>
+      </div>
+
+      <div v-if="!loading" class="content">
+          Selected: {{ selectedSite }}
         </div>
       </div>
 

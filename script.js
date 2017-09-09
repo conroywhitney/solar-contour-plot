@@ -2,6 +2,7 @@ var solarContour = new Vue({
   el: "#solar-contour",
   data: {
     baseURL: "http://localhost:4567",
+    loading: true,
     selectedSite: null,
     sites: []
   },
@@ -26,7 +27,8 @@ var solarContour = new Vue({
 
           console.log("fetchSites", "success", response, "sites", sites);
 
-          $this.$set($this, "sites");
+          $this.$set($this, "sites", sites);
+          $this.$set($this, "loading", false);
         })
         .catch(function(error) {
           console.log("fetchSites", "error", error);
