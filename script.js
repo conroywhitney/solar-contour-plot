@@ -2,9 +2,12 @@ var solarContour = new Vue({
   el: "#solar-contour",
   data: {
     baseURL: "http://localhost:4567",
-    loading: true,
+    error: false,
+    loading: false,
+    pointsLoaded: false,
     selectedSite: null,
-    sites: []
+    sites: [],
+    sitesLoaded: false
   },
   computed: {
     alphabeticalSites: function() {
@@ -17,6 +20,7 @@ var solarContour = new Vue({
     fetchSites: function() {
       var $this = this;
       var url = this.baseURL + "/dev/sites/?short=T";
+      $this.$set($this, "loading", true);
 
       console.log("fetchSites", "url", url);
 
@@ -29,9 +33,12 @@ var solarContour = new Vue({
 
           $this.$set($this, "sites", sites);
           $this.$set($this, "loading", false);
+          $this.$set($this, "sitesLoaded", true);
         })
         .catch(function(error) {
           console.log("fetchSites", "error", error);
+          $this.$set($this, "loading", false);
+          $this.$set($this, "error", true);
         });
     }
   },

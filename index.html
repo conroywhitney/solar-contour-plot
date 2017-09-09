@@ -36,11 +36,13 @@
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
-            <h2 class="lead">Choose your location to see solar panel wattage outputs at various tilts &amp; azimuths.</h2>
+            <div v-if="sitesLoaded">
+              <h2 class="lead">Choose your location to see solar panel wattage outputs at various tilts &amp; azimuths.</h2>
 
-            <select class="form-control" id="select" v-model="selectedSite">
-              <option v-for="site in alphabeticalSites" :value="site.file_id">{{ site.city }}</option>
-            </select>
+              <select class="form-control" id="select" v-model="selectedSite">
+                <option v-for="site in alphabeticalSites" :value="site.file_id">{{ site.city }}</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +54,11 @@
         <div>Loading...</div>
       </div>
 
-      <div v-if="!loading" class="content">
+      <div v-if="error" class="alert alert-danger">
+        An error occurred. Please try again later.
+      </div>
+
+      <div v-if="pointsLoaded" class="content">
           Selected: {{ selectedSite }}
         </div>
       </div>
