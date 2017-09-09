@@ -6,8 +6,9 @@ body {
 
 .footer {
   border-top: 1px solid #eeeeee;
-  padding-top: 25px;
   margin-top: 50px;
+  padding-top: 25px;
+  text-align: center;
 }
 
 .loading {
