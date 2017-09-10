@@ -14,7 +14,21 @@ var solarContour = new Vue({
         return a.city.localeCompare(b.city);
       });
     },
-    energyPercentages: function() {},
+    energyPercentages: function() {
+      var energyPercentages = new Array(this.site.azimuth.length);
+
+      for (var i = 0; i < this.site.azimuth.length; i++) {
+        energyPercentages[i] = new Array(this.site.tilt.length);
+
+        for (var j = 0; j < this.site.tilt.length; j++) {
+          energyPercentages[i][j] = this.site.energy[i][j] / this.maxEnergy;
+        }
+      }
+
+      console.log("energyPercentages", energyPercentages);
+
+      return energyPercentages;
+    },
     maxEnergy: function() {
       var flattenedEnergies = this.site.energy.join().split(",").map(Number);
       var maxEnergy = flattenedEnergies.reduce(function(max, num) {
@@ -91,7 +105,8 @@ var solarContour = new Vue({
           type: "contour",
           x: this.site.azimuth,
           y: this.site.tilt,
-          z: this.site.energy
+          z: this.site.energy,
+          customData: this.energyPercentages
         }
       ];
       var settings = {
@@ -114,8 +129,6 @@ var solarContour = new Vue({
           }
         }
       };
-
-      this.maxEnergy;
 
       Plotly.newPlot(domId, data, settings);
     }
