@@ -49,6 +49,11 @@
                 </option>
               </select>
             </div>
+            <div v-if="site" class="center-block col-lg-4 col-md-6 col-sm-8" style="float: none;">
+              <div class="max-energy">
+                <strong>{{ this.maxEnergy }}</strong> annual kWh / DC kW maximum
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -69,6 +74,9 @@
       </div>
 
       <div class="content">
+        <div v-if="site" class="instructions center-block col-lg-12 col-md-12 col-sm-12" style="float: none;">
+          Hover over the graph to see energy &amp; % efficiency levels for each azimuth/tilt combination
+        </div>
         <div v-if="site" id="graph">
           <!-- intentionally left blank -->
         </div>
