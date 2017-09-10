@@ -3,11 +3,10 @@ var solarContour = new Vue({
   data: {
     baseURL: "https://solar-contour-plot.herokuapp.com",
     error: false,
+    fileId: null,
     loading: false,
-    pointsLoaded: false,
-    selectedSite: null,
-    sites: [],
-    sitesLoaded: false
+    site: null,
+    sites: null
   },
   computed: {
     alphabeticalSites: function() {
@@ -21,8 +20,10 @@ var solarContour = new Vue({
       var $this = this;
       var url = this.baseURL + "/dev/sites/?short=T";
 
-      $this.$set($this, "error", false);
-      $this.$set($this, "loading", true);
+      this.$set(this, "error", false);
+      this.$set(this, "loading", true);
+      this.$set(this, "sites", null);
+      this.$set(this, "site", null);
 
       console.log("fetchSites", "url", url);
 
@@ -35,7 +36,6 @@ var solarContour = new Vue({
 
           $this.$set($this, "sites", sites);
           $this.$set($this, "loading", false);
-          $this.$set($this, "sitesLoaded", true);
         })
         .catch(function(error) {
           console.log("fetchSites", "error", error);
@@ -43,9 +43,54 @@ var solarContour = new Vue({
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
         });
+    },
+    fetchSite: function(file_id) {
+      var $this = this;
+      var url = this.baseURL + "/dev/sites/" + file_id + "/";
+
+      this.$set(this, "error", false);
+      this.$set(this, "loading", true);
+      this.$set(this, "site", null);
+
+      console.log("fetchSite", "url", url);
+
+      axios
+        .get(url)
+        .then(function(response) {
+          var site = response.data.data.site;
+
+          console.log("fetchSite", "success", response, "site", site);
+
+          $this.$set($this, "site", site);
+          $this.$set($this, "loading", false);
+
+          setTimeout($this.renderContourPlot, 50);
+        })
+        .catch(function(error) {
+          console.log("fetchSite", "error", error);
+
+          $this.$set($this, "loading", false);
+          $this.$set($this, "error", true);
+        });
+    },
+    renderContourPlot: function() {
+      var domId = "graph";
+      var data = [
+        {
+          type: "contour",
+          z: this.site.energy
+        }
+      ];
+      var settings = {};
+
+      Plotly.newPlot(domId, data, settings);
     }
   },
-  watch: {},
+  watch: {
+    fileId: function(file_id) {
+      this.fetchSite(file_id);
+    }
+  },
   mounted: function() {
     this.fetchSites();
   }
