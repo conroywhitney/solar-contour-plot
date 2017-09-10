@@ -124,13 +124,27 @@ var solarContour = new Vue({
           colorscale: "Hot",
           customData: this.energyPercentages,
           text: this.hoverText,
+          name: "",
           type: "contour",
           x: this.site.azimuth,
           y: this.site.tilt,
           z: this.site.energy
+        },
+        {
+          x: [90, 135, 180, 225, 270],
+          y: [3.5, 3.5, 3.5, 3.5, 3.5],
+          mode: "text",
+          text: ["E", "SE", "S", "SW", "W"],
+          textposition: "bottom",
+          textfont: {
+            family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            size: 18,
+            color: "#7f7f7f"
+          }
         }
       ];
-      var settings = {
+      var layout = {
+        hovermode: "closest",
         title:
           "Annual kWh Produced per DC kW<br />for various Tilts / Azimuths",
         xaxis: {
@@ -164,7 +178,7 @@ var solarContour = new Vue({
         }
       };
 
-      Plotly.newPlot(domId, data, settings);
+      Plotly.newPlot(domId, data, layout);
     }
   },
   watch: {
