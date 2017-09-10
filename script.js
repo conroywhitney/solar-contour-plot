@@ -78,6 +78,8 @@ var solarContour = new Vue({
       var data = [
         {
           type: "contour",
+          x: this.site.azimuth,
+          y: this.site.tilt,
           z: this.site.energy
         }
       ];
