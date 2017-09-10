@@ -9,6 +9,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-gv0oNvwnqzF6ULI9TVsSmnULNb3zasNysvWwfT/s4l8k5I+g6oFz9dye0wg3rQ2Q" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <script src="https://unpkg.com/vue"></script>
   </head>
@@ -51,7 +52,7 @@
             </div>
             <div v-if="site" class="center-block col-lg-4 col-md-6 col-sm-8" style="float: none;">
               <div class="max-energy">
-                <strong>{{ this.maxEnergy }}</strong> annual kWh / DC kW maximum
+                <strong>{{ this.maxEnergy.toLocaleString() }}</strong> annual kWh / DC kW maximum
               </div>
             </div>
           </div>
@@ -91,13 +92,16 @@
               </p>
               <p>
                 API developed by Alan Mitchell of <a href="http://analysisnorth.com/">Analysis North</a> using the <a href="http://pvwatts.nrel.gov/">PVWatts Calculator</a>.
+              </p>
+              <p>
                 Submitted as an entry in the <a href="http://www.launchalaska.com/">Launch Alaska</a> Renewable Energy Reverse Hackathon 2017.
               </p>
               <p>
-                Built using <a href="https://getbootstrap.com/" rel="nofollow">Bootstrap</a> and <a href="https://vuejs.org/">Vue.js</a>.
-                <a href="https://bootswatch.com/lumen/" rel="nofollow">Lumen Bootswatch Theme</a> by <a href="https://thomaspark.co/" rel="nofollow">Thomas Park</a>.
-                Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>.
-                Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.
+                Built using
+                <a href="https://vuejs.org/">Vue.js</a> and the
+                <a href="https://bootswatch.com/lumen/" rel="nofollow">Lumen Bootswatch Theme</a>.
+              </p>
+              <p>
                 Code released under the <a href="https://github.com/conroywhitney/solar-contour-plot/blob/master/LICENSE">MIT License</a>.
               </p>
             </div>
