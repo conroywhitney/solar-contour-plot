@@ -132,7 +132,7 @@ var solarContour = new Vue({
         },
         {
           x: [90, 135, 180, 225, 270],
-          y: [3.5, 3.5, 3.5, 3.5, 3.5], // [3.5] * this.site.azimuth.length,
+          y: [3.5, 3.5, 3.5, 3.5, 3.5],
           mode: "text",
           text: ["E", "SE", "S", "SW", "W"],
           textposition: "bottom",
