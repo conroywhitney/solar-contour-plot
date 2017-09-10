@@ -63,6 +63,8 @@ var solarContour = new Vue({
 
           $this.$set($this, "site", site);
           $this.$set($this, "loading", false);
+
+          setTimeout($this.renderContourPlot, 50);
         })
         .catch(function(error) {
           console.log("fetchSite", "error", error);
@@ -70,6 +72,18 @@ var solarContour = new Vue({
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
         });
+    },
+    renderContourPlot: function() {
+      var domId = "graph";
+      var data = [
+        {
+          type: "contour",
+          z: this.site.energy
+        }
+      ];
+      var settings = {};
+
+      Plotly.newPlot(domId, data, settings);
     }
   },
   watch: {

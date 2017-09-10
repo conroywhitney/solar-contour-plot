@@ -66,8 +66,7 @@
         </div>
       </div>
 
-      <div v-if="site" class="content">
-        {{ site.city }}
+      <div v-if="site" class="content" id="graph">
       </div>
 
       <footer class="footer navbar-fixed-bottom">
@@ -97,10 +96,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.30.0.min.js"></script>
     <script src="./script.js"></script>
 
     <script type="text/javascript">
-      $(document).ready(function() { $("#solar-contour").show(); });
+      $(document).ready(function() {
+        $("#solar-contour").show();
+      });
     </script>
   </body>
 </html>
