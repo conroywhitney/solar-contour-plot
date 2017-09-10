@@ -83,7 +83,26 @@ var solarContour = new Vue({
           z: this.site.energy
         }
       ];
-      var settings = {};
+      var settings = {
+        title:
+          "Annual kWh Produced per DC kW<br />for various Tilts / Azimuths",
+        xaxis: {
+          title: "Azimuth (degrees)",
+          titlefont: {
+            family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            size: 18,
+            color: "#7f7f7f"
+          }
+        },
+        yaxis: {
+          title: "Tilt (degrees)",
+          titlefont: {
+            family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            size: 18,
+            color: "#7f7f7f"
+          }
+        }
+      };
 
       Plotly.newPlot(domId, data, settings);
     }
