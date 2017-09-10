@@ -12,6 +12,7 @@ body {
 
 .content {
   margin: 0 auto;
+  margin-bottom: 10vmin;
 }
 
 .footer {
@@ -98,6 +99,7 @@ select.form-control {
   .content,
   #graph {
     height: 100vmin;
+    margin-bottom: 20vmin;
     margin-left: -2vmin;
     width: 100vmin;
   }
