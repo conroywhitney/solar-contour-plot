@@ -29,6 +29,24 @@ var solarContour = new Vue({
 
       return energyPercentages;
     },
+    hoverText: function() {
+      var hoverText = new Array(this.site.azimuth.length);
+
+      for (var i = 0; i < this.site.azimuth.length; i++) {
+        hoverText[i] = new Array(this.site.tilt.length);
+
+        for (var j = 0; j < this.site.tilt.length; j++) {
+          var energyPercentage = this.energyPercentages[i][j];
+          hoverText[i][j] = energyPercentage.toLocaleString("en-US", {
+            style: "percent"
+          });
+        }
+      }
+
+      console.log("hoverText", hoverText);
+
+      return hoverText;
+    },
     maxEnergy: function() {
       var flattenedEnergies = this.site.energy.join().split(",").map(Number);
       var maxEnergy = flattenedEnergies.reduce(function(max, num) {
@@ -102,6 +120,7 @@ var solarContour = new Vue({
       var domId = "graph";
       var data = [
         {
+          text: this.hoverText,
           type: "contour",
           x: this.site.azimuth,
           y: this.site.tilt,
