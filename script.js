@@ -25,7 +25,7 @@ var solarContour = new Vue({
         }
       }
 
-      console.log("energyPercentages", energyPercentages);
+      // console.log("energyPercentages", energyPercentages);
 
       return energyPercentages;
     },
@@ -44,7 +44,7 @@ var solarContour = new Vue({
         }
       }
 
-      console.log("hoverText", hoverText);
+      // console.log("hoverText", hoverText);
 
       return hoverText;
     },
@@ -54,7 +54,7 @@ var solarContour = new Vue({
         return Math.max(max, num);
       }, -Infinity);
 
-      console.log("maxEnergy", maxEnergy);
+      // console.log("maxEnergy", maxEnergy);
 
       return maxEnergy;
     }
@@ -69,20 +69,20 @@ var solarContour = new Vue({
       this.$set(this, "sites", null);
       this.$set(this, "site", null);
 
-      console.log("fetchSites", "url", url);
+      // console.log("fetchSites", "url", url);
 
       axios
         .get(url)
         .then(function(response) {
           var sites = response.data.data.sites;
 
-          console.log("fetchSites", "success", response, "sites", sites);
+          // console.log("fetchSites", "success", response, "sites", sites);
 
           $this.$set($this, "sites", sites);
           $this.$set($this, "loading", false);
         })
         .catch(function(error) {
-          console.log("fetchSites", "error", error);
+          // console.log("fetchSites", "error", error);
 
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
@@ -96,14 +96,14 @@ var solarContour = new Vue({
       this.$set(this, "loading", true);
       this.$set(this, "site", null);
 
-      console.log("fetchSite", "url", url);
+      // console.log("fetchSite", "url", url);
 
       axios
         .get(url)
         .then(function(response) {
           var site = response.data.data.site;
 
-          console.log("fetchSite", "success", response, "site", site);
+          // console.log("fetchSite", "success", response, "site", site);
 
           $this.$set($this, "site", site);
           $this.$set($this, "loading", false);
@@ -111,7 +111,7 @@ var solarContour = new Vue({
           setTimeout($this.renderContourPlot, 50);
         })
         .catch(function(error) {
-          console.log("fetchSite", "error", error);
+          // console.log("fetchSite", "error", error);
 
           $this.$set($this, "loading", false);
           $this.$set($this, "error", true);
