@@ -4,9 +4,19 @@ body {
   font-weight: 200;
 }
 
+.content,
+#graph {
+  height: 100vmin;
+  width: 100vmin;
+}
+
+.content {
+  margin: 0 auto;
+}
+
 .footer {
+  background-color: #fff;
   border-top: 1px solid #eeeeee;
-  margin-top: 50px;
   padding-top: 25px;
   text-align: center;
 }
@@ -31,8 +41,17 @@ body {
   -webkit-animation: spin2 1s infinite linear;
 }
 
+#graph {
+  z-index: -1;
+}
+
+.modebar {
+  display: none;
+}
+
 select.form-control {
   font-size: 18px;
+  padding: 5px 10px;
 }
 
 #solar-contour {
@@ -66,4 +85,10 @@ select.form-control {
 /* Mobile Navigation
 ====================================================================== */
 @media only screen and (max-width: 767px) {
+  .content,
+  #graph {
+    height: 100vmin;
+    margin-left: -2vmin;
+    width: 100vmin;
+  }
 }
