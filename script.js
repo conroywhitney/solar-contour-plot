@@ -38,10 +38,9 @@ var solarContour = new Vue({
         for (var j = 0; j < this.site.tilt.length; j++) {
           var energyPercentage = this.energyPercentages[i][j];
           hoverText[i][j] =
-            "% max: " +
             energyPercentage.toLocaleString("en-US", {
               style: "percent"
-            });
+            }) + " of max";
         }
       }
 
@@ -122,31 +121,45 @@ var solarContour = new Vue({
       var domId = "graph";
       var data = [
         {
+          colorscale: "Hot",
+          customData: this.energyPercentages,
           text: this.hoverText,
           type: "contour",
           x: this.site.azimuth,
           y: this.site.tilt,
-          z: this.site.energy,
-          customData: this.energyPercentages
+          z: this.site.energy
         }
       ];
       var settings = {
         title:
           "Annual kWh Produced per DC kW<br />for various Tilts / Azimuths",
         xaxis: {
-          title: "Azimuth (degrees)",
+          title: "Direction Faced by Panels (degrees)",
           titlefont: {
             family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
             size: 18,
             color: "#7f7f7f"
+          },
+          autotick: false,
+          ticks: "outside",
+          tick0: 90,
+          dtick: 15,
+          tickfont: {
+            size: 18
           }
         },
         yaxis: {
-          title: "Tilt (degrees)",
+          title: "Tilt of Panels from Horizontal (degrees)",
           titlefont: {
             family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
             size: 18,
             color: "#7f7f7f"
+          },
+          autotick: false,
+          tick0: 0,
+          dtick: 15,
+          tickfont: {
+            size: 18
           }
         }
       };
