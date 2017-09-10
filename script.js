@@ -11,7 +11,7 @@ var solarContour = new Vue({
   computed: {
     alphabeticalSites: function() {
       return this.sites.sort(function(a, b) {
-        return a.city.localeCompare(b.city);
+        return a.state.localeCompare(b.state) || a.city.localeCompare(b.city);
       });
     },
     energyPercentages: function() {
