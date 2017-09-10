@@ -13,6 +13,17 @@ var solarContour = new Vue({
       return this.sites.sort(function(a, b) {
         return a.city.localeCompare(b.city);
       });
+    },
+    energyPercentages: function() {},
+    maxEnergy: function() {
+      var flattenedEnergies = this.site.energy.join().split(",").map(Number);
+      var maxEnergy = flattenedEnergies.reduce(function(max, num) {
+        return Math.max(max, num);
+      }, -Infinity);
+
+      console.log("maxEnergy", maxEnergy);
+
+      return maxEnergy;
     }
   },
   methods: {
@@ -103,6 +114,8 @@ var solarContour = new Vue({
           }
         }
       };
+
+      this.maxEnergy;
 
       Plotly.newPlot(domId, data, settings);
     }
