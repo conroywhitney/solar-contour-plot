@@ -1,0 +1,10 @@
+{
+  "name": "solar-contour-plot",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.6",
+    "eslint-config-prettier": "^2.1.1"
+  },
+  "scripts": {}
+}
