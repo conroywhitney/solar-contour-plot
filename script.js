@@ -1,7 +1,7 @@
 var solarContour = new Vue({
   el: "#solar-contour",
   data: {
-    baseURL: "http://localhost:4567",
+    baseURL: "https://solar-contour-plot.herokuapp.com",
     error: false,
     loading: false,
     pointsLoaded: false,
