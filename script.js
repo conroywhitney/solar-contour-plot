@@ -6,9 +6,7 @@ var solarContour = new Vue({
     fileId: null,
     loading: false,
     site: null,
-    siteLoaded: false,
-    sites: [],
-    sitesLoaded: false
+    sites: null
   },
   computed: {
     alphabeticalSites: function() {
@@ -24,6 +22,7 @@ var solarContour = new Vue({
 
       this.$set(this, "error", false);
       this.$set(this, "loading", true);
+      this.$set(this, "sites", null);
       this.$set(this, "site", null);
 
       console.log("fetchSites", "url", url);
@@ -37,7 +36,6 @@ var solarContour = new Vue({
 
           $this.$set($this, "sites", sites);
           $this.$set($this, "loading", false);
-          $this.$set($this, "sitesLoaded", true);
         })
         .catch(function(error) {
           console.log("fetchSites", "error", error);
@@ -65,7 +63,6 @@ var solarContour = new Vue({
 
           $this.$set($this, "site", site);
           $this.$set($this, "loading", false);
-          $this.$set($this, "siteLoaded", true);
         })
         .catch(function(error) {
           console.log("fetchSite", "error", error);

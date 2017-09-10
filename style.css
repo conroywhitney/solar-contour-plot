@@ -33,6 +33,7 @@ body {
 
 select.form-control {
   font-size: 18px;
+  padding: 5px 10px;
 }
 
 #solar-contour {

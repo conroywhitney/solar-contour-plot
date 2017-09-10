@@ -36,7 +36,7 @@
 
     <div class="container" id="solar-contour">
       <div class="page-header" id="banner">
-        <div v-if="sitesLoaded">
+        <div v-if="sites">
           <div class="row">
             <div class="center-block col-lg-8 col-md-7 col-sm-6" style="float: none;">
               <h2 class="lead">Choose your location to see solar panel wattage outputs at various tilts &amp; azimuths.</h2>
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div v-if="siteLoaded" class="content">
+      <div v-if="site" class="content">
         {{ site.city }}
       </div>
 
