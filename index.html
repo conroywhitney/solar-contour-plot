@@ -51,7 +51,7 @@
             </div>
             <div v-if="site" class="center-block col-lg-4 col-md-6 col-sm-8" style="float: none;">
               <div class="max-energy">
-                <strong>{{ this.maxEnergy }}</strong> annual kWh / DC kW maximum
+                <strong>{{ this.maxEnergy.toLocaleString() }}</strong> annual kWh / DC kW maximum
               </div>
             </div>
           </div>
