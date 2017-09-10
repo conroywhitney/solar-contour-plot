@@ -37,9 +37,11 @@ var solarContour = new Vue({
 
         for (var j = 0; j < this.site.tilt.length; j++) {
           var energyPercentage = this.energyPercentages[i][j];
-          hoverText[i][j] = energyPercentage.toLocaleString("en-US", {
-            style: "percent"
-          });
+          hoverText[i][j] =
+            "% max: " +
+            energyPercentage.toLocaleString("en-US", {
+              style: "percent"
+            });
         }
       }
 
